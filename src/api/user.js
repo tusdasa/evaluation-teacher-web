@@ -9,7 +9,7 @@ export function login(data) {
   param.append('studentId', data.studentId)
   param.append('password', data.password)
   return request({
-    url: '/auth/student',
+    url: 'http://localhost:8080/service/auth/student',
     method: 'post',
     params: param,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -18,15 +18,16 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/vue-admin-template/user/info',
+    url: 'http://localhost:8080/service/auth/studentinfo',
     method: 'get',
-    params: { token }
+    headers: { 'Authorization': token }
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
+    url: 'http://localhost:8080/service/auth/logout/student',
+    method: 'get',
+    headers: { 'Authorization': token }
   })
 }

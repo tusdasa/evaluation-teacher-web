@@ -6,6 +6,7 @@
           <span style="font-size:30px;">欢迎您</span>
         </div>
         <div vclass="text item">{{ name }} </div>
+        <div vclass="text item">当前角色: {{ role }} </div>
       </el-card>
     </div>
   </div>
@@ -22,7 +23,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['name', 'avatar'])
+    ...mapGetters(['name', 'role'])
   }
 }
 </script>

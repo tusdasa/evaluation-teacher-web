@@ -1,9 +1,12 @@
 import request from '@/utils/request'
+import { getToken } from '@/utils/auth'
 
-export function getList(params) {
+const token = getToken()
+
+export function getList(token) {
   return request({
-    url: '/vue-admin-template/table/list',
+    url: 'http://localhost:8080/service/thirdkpi/',
     method: 'get',
-    params
+    headers: { 'Authorization': token }
   })
 }

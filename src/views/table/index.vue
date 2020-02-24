@@ -8,11 +8,30 @@
       fit
       highlight-current-row
     >
+    
+      <el-table-column align="center" label="ID" width="95">
+        <template slot-scope="scope">
+          {{ scope.row.thirdKpiId }}
+        </template>
+      </el-table-column>
+      <el-table-column label="指标" width="220" align="center">
+        <template slot-scope="scope">
+          <p>{{ scope.row.thirdKpiContent }}</p>
+        </template>
+      </el-table-column>
+      <!--
+      <el-table-column label="Author" width="110" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.name }}</span>
+        </template>
+      </el-table-column>
+      
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           {{ scope.$index }}
         </template>
       </el-table-column>
+     
       <el-table-column label="Title">
         <template slot-scope="scope">
           {{ scope.row.title }}
@@ -23,11 +42,13 @@
           <span>{{ scope.row.author }}</span>
         </template>
       </el-table-column>
+      
       <el-table-column label="Pageviews" width="110" align="center">
         <template slot-scope="scope">
           {{ scope.row.pageviews }}
         </template>
       </el-table-column>
+     
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
@@ -39,6 +60,7 @@
           <span>{{ scope.row.display_time }}</span>
         </template>
       </el-table-column>
+       -->
     </el-table>
   </div>
 </template>
@@ -70,7 +92,8 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.data.items
+        this.list = response.table
+        console.log(JSON.stringify(this.list))
         this.listLoading = false
       })
     }
