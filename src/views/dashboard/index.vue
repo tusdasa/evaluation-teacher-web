@@ -8,9 +8,9 @@
               <div slot="header" class="clearfix">
                 <span style="font-size:30px;">欢迎您</span>
               </div>
-              <div vclass="text item">{{ name }}</div>
-              <div vclass="text item">{{ id }}</div>
-              <div vclass="text item">当前角色: {{ role | roleFilter }}</div>
+              <div vclass="text item"><strong> {{ name | nameFiter }} </strong> </div>
+              <div vclass="text item"><strong>{{ id }}</strong></div>
+              <div vclass="text item">当前角色: <strong>{{ role | roleFilter }}</strong></div>
             </el-card>
           </div>
         </div>
@@ -33,12 +33,23 @@ export default {
     roleFilter(role) {
       const roleMap = {
         student: '学生',
-        teacher: '老师',
+        teacher: '教师',
         supervisor: '教学督导',
         main: '负责人',
         other: '其他'
       }
       return roleMap[role]
+    },
+    nameFiter(name) {
+      if (name.length <= 3) {
+        return name[0] + '老师'
+      }
+      if (name.length === 4) {
+        return name[0] + name[1] + '老师'
+      }
+      if (name > 4) {
+        return name
+      }
     }
   },
   data() {

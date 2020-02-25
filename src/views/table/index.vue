@@ -29,58 +29,21 @@
         </template>
       </el-table-column>
       <el-table-column label="操作" width="220" align="center">
-        <el-button v-model="direction" type="primary" @click="drawer = true">评价</el-button>
+        <template slot-scope="scope">
+          <el-button v-model="direction" type="primary" @click="evauationTeacher(scope.row.workId)">评价</el-button>
+        </template>
       </el-table-column>
       <!-- department -->
       <!--
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
-        </template>
-      </el-table-column>
-      
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           {{ scope.$index }}
         </template>
       </el-table-column>
-     
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-     
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
-        </template>
-      </el-table-column>
        -->
     </el-table>
 
-    <el-drawer
-      :with-header="false"
-      :visible.sync="drawer"
-      :direction="direction"
-      :before-close="handleClose">
+    <el-drawer :with-header="false" :visible.sync="drawer" :direction="direction" :before-close="handleClose">
       <el-container>
         <el-main>
           <el-form ref="form" :model="form">
@@ -94,7 +57,7 @@
               </el-select>
             </el-form-item>
             <el-form-item size="large">
-              <el-button type="primary" @click="sumit">提交评价</el-button>
+              <el-button type="primary" @click="sumbitEvaluation">提交评价</el-button>
             </el-form-item>
           </el-form>
         </el-main>
@@ -105,7 +68,7 @@
 </template>
 
 <script>
-import { getList, getKpiList } from '@/api/table'
+import { getList, getKpiList, sendEvaluationData } from '@/api/table'
 
 export default {
   filters: {
@@ -126,6 +89,7 @@ export default {
       direction: 'rtl',
       kpiList: null,
       result: null,
+      currentWorkId: null,
       form: {
         kpi: []
       }
@@ -136,23 +100,48 @@ export default {
     this.fetchKpi()
   },
   methods: {
-    sumit() {
-      console.log(JSON.stringify(this.form))
-      const Evaluation = {}
+    evauationTeacher(workId) {
+      this.drawer = true
+      this.workId = workId
+    },
+    sumbitEvaluation() {
+      const teacherEvaluation = {}
       const lists = []
       // this.form.kpi;
       if (this.form.kpi < this.kpiList.length) {
         this.$message.error('未完成')
         return
       }
+      let flag = false
       for (let i = 0; i < this.form.kpi.length; i++) {
-        const kpiResult = {}
-        kpiResult.kid = this.kpiList[i].thirdKpiId
-        kpiResult.score = this.form.kpi[i]
-        lists.push(kpiResult)
+        const temp = {}
+        temp.kid = this.kpiList[i].thirdKpiId
+        temp.score = this.form.kpi[i]
+        if (temp.score === undefined || temp.score === null) {
+          flag = true
+          break
+        }
+        lists.push(temp)
       }
-      Evaluation.secondKpiList = lists
-      console.log(JSON.stringify(Evaluation))
+      if (flag) {
+        this.$message.error('未完成')
+        return
+      } else {
+        teacherEvaluation.workId = this.workId
+        teacherEvaluation.secondKpiList = lists
+        sendEvaluationData(teacherEvaluation).then(response => {
+          if (response.code === 200) {
+            this.$message({
+              message: '评价成功',
+              type: 'success'
+            })
+            this.drawer = false
+            location.reload()
+          } else {
+            this.$message.error('错误')
+          }
+        })
+      }
     },
     handleClose(done) {
       this.$confirm('确认关闭？')
@@ -164,7 +153,11 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.table | null
+        if (response.code === 200) {
+          this.list = response.table
+        } else {
+          this.list = null
+        }
         this.listLoading = false
       })
     },
