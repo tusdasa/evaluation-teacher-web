@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 /**
  * 登录
- * @param {studentId, password} data 用户信息 
+ * @param {studentId, password} data 用户信息
  */
 export function login(data) {
   const param = new URLSearchParams()

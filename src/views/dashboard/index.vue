@@ -1,14 +1,26 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span style="font-size:30px;">欢迎您</span>
+    <el-row>
+      <el-col :span="12">
+        <div class="grid-content">
+          <div class="dashboard-text">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span style="font-size:30px;">欢迎您</span>
+              </div>
+              <div vclass="text item">{{ name }}</div>
+              <div vclass="text item">{{ id }}</div>
+              <div vclass="text item">当前角色: {{ role | roleFilter }}</div>
+            </el-card>
+          </div>
         </div>
-        <div vclass="text item">{{ name }} </div>
-        <div vclass="text item">当前角色: {{ role }} </div>
-      </el-card>
-    </div>
+      </el-col>
+      <el-col :span="12">
+        <div class="grid-content">
+          <el-calendar v-model="value" />
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -17,13 +29,25 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  filters: {
+    roleFilter(role) {
+      const roleMap = {
+        student: '学生',
+        teacher: '老师',
+        supervisor: '教学督导',
+        main: '负责人',
+        other: '其他'
+      }
+      return roleMap[role]
+    }
+  },
   data() {
     return {
-      ss: '1212121'
+      value: new Date()
     }
   },
   computed: {
-    ...mapGetters(['name', 'role'])
+    ...mapGetters(['name', 'role', 'id'])
   }
 }
 </script>
@@ -38,23 +62,23 @@ export default {
   }
 }
 .text {
-    font-size: 12px;
-  }
+  font-size: 12px;
+}
 
-  .item {
-    margin-bottom: 18px;
-  }
+.item {
+  margin-bottom: 18px;
+}
 
-  .clearfix:before,
-  .clearfix:after {
-    display: table;
-    content: "";
-  }
-  .clearfix:after {
-    clear: both
-  }
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
 
-  .box-card {
-    width: 500px;
-  }
+.box-card {
+  width: 500px;
+}
 </style>

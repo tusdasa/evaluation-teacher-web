@@ -6,7 +6,8 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    role: ''
+    role: '',
+    id: 0
   }
 }
 
@@ -24,6 +25,9 @@ const mutations = {
   },
   SET_ROLE: (state, role) => {
     state.role = role
+  },
+  SET_ID: (state, id) => {
+    state.id = id
   }
 }
 
@@ -35,7 +39,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ studentId: studentId.trim(), password: password }).then(response => {
         console.log(JSON.stringify(response))
-        const { data } = response
+        // const { data } = response
         commit('SET_TOKEN', response.data)
         setToken(response.data)
         resolve()
@@ -51,12 +55,6 @@ const actions = {
      * {"code":200,"message":"success","requestId":"3e989343d7654d0badfb2e258284a43c","data":{"id":"1810212128","name":"学生一","role":1}}
      */
     return new Promise((resolve, reject) => {
-      /**
-       * const ddd = { roles: ['admin'], introduction: 'I am a super administrator', avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', name: '管理员' }
-       * commit('SET_NAME', ddd.name)
-       * commit('SET_AVATAR', ddd.avatar)
-       * resolve(ddd) 
-       */
       getInfo(state.token).then(response => {
         const { data } = response
 
@@ -64,7 +62,7 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { name, role } = data
+        const { name, role, id } = data
 
         // eslint-disable-next-line no-unused-vars
         let role_name
@@ -86,7 +84,7 @@ const actions = {
             role_name = 'other'
             break
         }
-
+        commit('SET_ID', id)
         commit('SET_NAME', name)
         commit('SET_ROLE', role_name)
         resolve(data)
