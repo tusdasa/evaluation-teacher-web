@@ -45,8 +45,7 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    console.log(JSON.stringify(res))
-
+    console.log(JSON.stringify(response))
     if (res.code === 401) {
       MessageBox.confirm('提示', res.message, {
         confirmButtonText: '重新输入',
@@ -58,11 +57,9 @@ service.interceptors.response.use(
         })
       })
     }
-
     if (res.code === 200) {
       return res
     }
-
     if (res.code === 500) {
       Message({
         message: res.message || 'Error',
@@ -71,39 +68,6 @@ service.interceptors.response.use(
       })
       return res
     }
-
-    // if the custom code is not 20000, it is judged as an error.
-    /*
-    if (res.code !== 200) {
-      if (res.code === 500) {
-        
-        Message({
-          message: res.message || 'Error',
-          type: 'error',
-          duration: 5 * 1000
-        })
-        return res
-        
-      }
-      if (res.code === 401) {
-        // to re-login
-        MessageBox.confirm('请检查您是否已经登录', res.message, {
-          confirmButtonText: '重新登录',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
-      }
-      
-      return Promise.reject(new Error(res.message || 'Error'))
-      // return res
-    } else {
-      return res
-    }
-    */
   },
   error => {
     console.log('err' + error) // for debug
