@@ -11,10 +11,10 @@
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="studentId"
-          v-model="loginForm.studentId"
-          placeholder="studentId"
-          name="studentId"
+          ref="workId"
+          v-model="loginForm.workId"
+          placeholder="workId"
+          name="workId"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -59,30 +59,30 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+        callback(new Error('请输入您的工号'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码必须大小6位'))
       } else {
         callback()
       }
     }
     return {
       loginForm: {
-        studentId: '1810212128',
+        workId: '1000000001',
         password: '12345678'
       },
       loginRules: {
-        studentId: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        workId: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: '/'
     }
   },
   watch: {
@@ -115,7 +115,6 @@ export default {
             this.loading = false
           })
         } else {
-          console.log('error submit!!')
           return false
         }
       })

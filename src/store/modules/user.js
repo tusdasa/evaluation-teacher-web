@@ -34,14 +34,13 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    console.log(JSON.stringify(userInfo))
-    const { studentId, password } = userInfo
+    const { workId, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ studentId: studentId.trim(), password: password }).then(response => {
-        console.log(JSON.stringify(response))
-        // const { data } = response
+      login({ workId: workId.trim(), password: password }).then(response => {
         commit('SET_TOKEN', response.data)
         setToken(response.data)
+        resolve()
+        // const { data } = response
         resolve()
       }).catch(error => {
         reject(error)
@@ -104,7 +103,6 @@ const actions = {
      */
     return new Promise((resolve, reject) => {
       logout(state.token).then(response => {
-        console.log(response)
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
