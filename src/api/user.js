@@ -11,7 +11,7 @@ export function login(data) {
   return request({
     url: 'http://localhost:8080/service/auth/teacher',
     method: 'post',
-    params: param,
+    data: param,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   })
 }

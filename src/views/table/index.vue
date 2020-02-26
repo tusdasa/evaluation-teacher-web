@@ -69,6 +69,7 @@
 
 <script>
 import { getList, getKpiList, sendEvaluationData } from '@/api/table'
+import { mapGetters } from 'vuex'
 
 export default {
   filters: {
@@ -94,6 +95,9 @@ export default {
         kpi: []
       }
     }
+  },
+  computed: {
+    ...mapGetters(['role'])
   },
   created() {
     this.fetchData()
@@ -173,5 +177,8 @@ export default {
 <style>
 .el-drawer.rtl{
   overflow: scroll
+}
+.nodisplay{
+  display: none;
 }
 </style>

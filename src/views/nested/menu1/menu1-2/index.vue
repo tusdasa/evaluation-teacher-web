@@ -1,7 +1,10 @@
 <template>
-  <div style="padding:30px;">
-    <el-alert :closable="false" title="menu 1-2" type="success">
-      <router-view />
-    </el-alert>
+  <div class="app-container">
+    <el-header>
+      <h1>第二指标</h1>
+    </el-header>
+    <el-main>
+      <h1>111</h1>
+    </el-main>
   </div>
 </template>
