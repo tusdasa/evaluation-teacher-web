@@ -4,7 +4,56 @@
       <h1>第三指标</h1>
     </el-header>
     <el-main>
-      <h1>111</h1>
+      <el-button type="primary">新建</el-button>
+      <el-table
+        v-loading="listLoading"
+        :data="ThirdKPI"
+        element-loading-text="载入中"
+        border
+        fit
+        highlight-current-row
+      >
+        <el-table-column align="center" label="ID" width="220">
+          <template slot-scope="scope">
+            {{ scope.row.thirdKpiId }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="所属第二指标" width="220">
+          <template slot-scope="scope">
+            {{ scope.row.secondKpiId }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="内容" width="330">
+          <template slot-scope="scope">
+            {{ scope.row.thirdKpiContent }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="计算规则" width="330">
+          <template slot-scope="scope">
+            {{ scope.row.calculationRuleId }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="操作" width="220">
+          <el-button type="primary">编辑</el-button>
+        </el-table-column>
+      </el-table>
     </el-main>
   </div>
 </template>
+<script>
+import { getAllThirdKPI } from '@/api/table'
+export default {
+  data() {
+    return {
+      listLoading: true,
+      ThirdKPI: []
+    }
+  },
+  created() {
+    getAllThirdKPI().then(response => {
+      this.ThirdKPI = response.table
+      this.listLoading = false
+    })
+  }
+}
+</script>

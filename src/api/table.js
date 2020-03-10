@@ -21,3 +21,24 @@ export function sendEvaluationData(result) {
     data: result
   })
 }
+
+export function getAllFirstKPI() {
+  return request({
+    url: 'http://localhost:8080/service/admin/first/',
+    method: 'get'
+  })
+}
+
+export function getAllSecondKPI() {
+  return request({
+    url: 'http://localhost:8080/service/admin/second/',
+    method: 'get'
+  })
+}
+
+export function getAllThirdKPI() {
+  return request({
+    url: 'http://localhost:8080/service/admin/third/',
+    method: 'get'
+  })
+}
