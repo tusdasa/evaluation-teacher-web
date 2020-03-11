@@ -20,7 +20,7 @@
         </el-table-column>
         <el-table-column align="center" label="所属第二指标" width="220">
           <template slot-scope="scope">
-            {{ scope.row.secondKpiId }}
+            {{ getSecondKPI(scope.row.secondKpiId) }}
           </template>
         </el-table-column>
         <el-table-column align="center" label="内容" width="330">
@@ -41,12 +41,13 @@
   </div>
 </template>
 <script>
-import { getAllThirdKPI } from '@/api/table'
+import { getAllThirdKPI, getAllSecondKPI } from '@/api/table'
 export default {
   data() {
     return {
       listLoading: true,
-      ThirdKPI: []
+      ThirdKPI: [],
+      SecondKPI: []
     }
   },
   created() {
@@ -54,6 +55,20 @@ export default {
       this.ThirdKPI = response.table
       this.listLoading = false
     })
+    getAllSecondKPI().then(response => {
+      this.SecondKPI = response.table
+    })
+  },
+  methods: {
+    getSecondKPI: function(secondKpiId) {
+      let content
+      this.SecondKPI.forEach(element => {
+        if (element.secondKpiId === secondKpiId) {
+          content = element.secondKpiContent
+        }
+      })
+      return content
+    }
   }
 }
 </script>

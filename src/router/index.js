@@ -123,6 +123,12 @@ export const constantRoutes = [
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
             meta: { title: '三级指标' }
+          },
+          {
+            path: 'menu1-4',
+            component: () => import('@/views/nested/menu1/menu1-4'),
+            name: 'Menu1-4',
+            meta: { title: '计算规则' }
           }
         ]
       },

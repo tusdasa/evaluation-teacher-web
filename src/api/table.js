@@ -2,21 +2,21 @@ import request from '@/utils/request'
 
 export function getList() {
   return request({
-    url: 'http://localhost:8080/service/tevaluation/teacher',
+    url: 'tevaluation/teacher',
     method: 'get'
   })
 }
 
 export function getKpiList() {
   return request({
-    url: 'http://localhost:8080/service/tevaluation/',
+    url: 'tevaluation/',
     method: 'get'
   })
 }
 
 export function sendEvaluationData(result) {
   return request({
-    url: 'http://localhost:8080/service/tevaluation/result',
+    url: 'tevaluation/result',
     method: 'post',
     data: result
   })
@@ -24,21 +24,28 @@ export function sendEvaluationData(result) {
 
 export function getAllFirstKPI() {
   return request({
-    url: 'http://localhost:8080/service/admin/first/',
+    url: 'admin/first/',
     method: 'get'
   })
 }
 
 export function getAllSecondKPI() {
   return request({
-    url: 'http://localhost:8080/service/admin/second/',
+    url: 'admin/second/',
     method: 'get'
   })
 }
 
 export function getAllThirdKPI() {
   return request({
-    url: 'http://localhost:8080/service/admin/third/',
+    url: 'admin/third/',
+    method: 'get'
+  })
+}
+
+export function getAllCalculationRule() {
+  return request({
+    url: 'admin/rule/calculation',
     method: 'get'
   })
 }

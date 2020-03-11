@@ -9,7 +9,7 @@ export function login(data) {
   param.append('workId', data.workId)
   param.append('password', data.password)
   return request({
-    url: 'http://localhost:8080/service/auth/teacher',
+    url: 'auth/teacher',
     method: 'post',
     data: param,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -18,7 +18,7 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: 'http://localhost:8080/service/auth/teacherinfo',
+    url: 'auth/teacherinfo',
     method: 'get',
     headers: { 'Authorization': token }
   })
@@ -26,7 +26,7 @@ export function getInfo(token) {
 
 export function logout(token) {
   return request({
-    url: 'http://localhost:8080/service/auth/logout/teacher',
+    url: 'auth/logout/teacher',
     method: 'get',
     headers: { 'Authorization': token }
   })
