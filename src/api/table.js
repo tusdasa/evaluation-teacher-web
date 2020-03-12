@@ -49,3 +49,34 @@ export function getAllCalculationRule() {
     method: 'get'
   })
 }
+
+export function getFirstKPIById(id) {
+  return request({
+    url: 'admin/first/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateFirstKPI(data) {
+  return request({
+    url: 'admin/first/',
+    method: 'put',
+    data: data
+  })
+}
+
+export function createFirstKPI(data) {
+  return request({
+    url: 'admin/first/',
+    method: 'post',
+    data: data
+  })
+}
+
+export function deleteFirstKPI(id) {
+  return request({
+    url: 'admin/first/' + String(id),
+    method: 'delete'
+  })
+}
+
