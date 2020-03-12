@@ -40,8 +40,8 @@
         <el-container>
           <el-main>
             <el-form ref="form" label-width="50px" :model="KPI">
-              <el-form-item label="指标">
-                <el-input v-model="KPI.firsKpiContent" placeholder="指标名" />
+              <el-form-item label="第一指标">
+                <el-input v-model="KPI.firsKpiContent" placeholder="指标" />
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="create">创建</el-button>
@@ -59,8 +59,8 @@
         <el-container>
           <el-main>
             <el-form ref="form" label-width="50px" :model="KPI">
-              <el-form-item label="指标">
-                <el-input v-model="KPI.firsKpiContent" placeholder="指标名" />
+              <el-form-item label="第一指标">
+                <el-input v-model="KPI.firsKpiContent" placeholder="指标" />
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="update">更新</el-button>

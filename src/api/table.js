@@ -80,3 +80,62 @@ export function deleteFirstKPI(id) {
   })
 }
 
+export function findSecondKPIById(id) {
+  return request({
+    url: 'admin/second/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateSecondKPI(data) {
+  return request({
+    url: 'admin/second/',
+    method: 'put',
+    data: data
+  })
+}
+
+export function createSecondKPI(data) {
+  return request({
+    url: 'admin/second/',
+    method: 'post',
+    data: data
+  })
+}
+
+export function deleteSecondKPI(id) {
+  return request({
+    url: 'admin/second/' + String(id),
+    method: 'delete'
+  })
+}
+
+export function findThirdKPIById(id) {
+  return request({
+    url: 'admin/third/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateThirdKPI(data) {
+  return request({
+    url: 'admin/third/',
+    method: 'put',
+    data: data
+  })
+}
+
+export function createThirdKPI(data) {
+  return request({
+    url: 'admin/third/',
+    method: 'post',
+    data: data
+  })
+}
+
+export function deleteThirdKPI(id) {
+  return request({
+    url: 'admin/third/' + String(id),
+    method: 'delete'
+  })
+}
