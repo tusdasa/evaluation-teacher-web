@@ -129,6 +129,18 @@ export const constantRoutes = [
             component: () => import('@/views/nested/menu1/menu1-4'),
             name: 'Menu1-4',
             meta: { title: '计算规则' }
+          },
+          {
+            path: 'menu1-5',
+            component: () => import('@/views/nested/menu1/menu1-5'),
+            name: 'Menu1-5',
+            meta: { title: '等级规则' }
+          },
+          {
+            path: 'menu1-6',
+            component: () => import('@/views/nested/menu1/menu1-6'),
+            name: 'Menu1-6',
+            meta: { title: '举证规则' }
           }
         ]
       },

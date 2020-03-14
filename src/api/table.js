@@ -139,3 +139,91 @@ export function deleteThirdKPI(id) {
     method: 'delete'
   })
 }
+
+export function findCalculationRuleById(id) {
+  return request({
+    url: 'admin/rule/calculation/' + String(id),
+    method: 'get'
+  })
+}
+
+export function createCalculationRule() {
+  return request({
+    url: 'admin/rule/calculation',
+    method: 'post'
+  })
+}
+
+export function findAllLevels() {
+  return request({
+    url: 'admin/rule/level',
+    method: 'get'
+  })
+}
+
+export function findAllEvidence() {
+  return request({
+    url: 'admin/rule/evidence',
+    method: 'get'
+  })
+}
+
+export function findEvidenceById(id) {
+  return request({
+    url: 'admin/rule/evidence/' + String(id),
+    method: 'get'
+  })
+}
+
+export function createEvidence() {
+  return request({
+    url: 'admin/rule/evidence',
+    method: 'post'
+  })
+}
+
+export function deleteEvidence(id) {
+  return request({
+    url: 'admin/rule/evidence/' + String(id),
+    method: 'delete'
+  })
+}
+
+export function updateEvidence(data) {
+  return request({
+    url: 'admin/rule/evidence',
+    method: 'put',
+    data: data
+  })
+}
+
+export function findLevelById(id) {
+  return request({
+    url: 'admin/rule/level/' + String(id),
+    method: 'get'
+  })
+}
+
+export function deleteLevel(id) {
+  return request({
+    url: 'admin/rule/level/' + String(id),
+    method: 'delete'
+  })
+}
+
+export function updateLevel(data) {
+  return request({
+    url: 'admin/rule/level',
+    method: 'put',
+    data: data
+  })
+}
+
+export function crateLevel(data) {
+  return request({
+    url: 'admin/rule/level',
+    method: 'post',
+    data: data
+  })
+}
+

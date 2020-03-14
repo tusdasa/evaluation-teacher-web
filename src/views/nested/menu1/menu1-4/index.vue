@@ -39,14 +39,16 @@
           </template>
         </el-table-column>
         <el-table-column align="center" label="操作" width="220">
-          <el-button type="primary" @click="editDrawer = true">编辑</el-button>
+          <template slot-scope="scope">
+            <el-button type="primary" @click="getCalculationRuleById(scope.row.calculationRuleId)">编辑</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 新建 -->
       <el-drawer
         title="新建"
         :visible.sync="newDrawer"
-        :direction="newDirection"
+        :direction="direction"
         :before-close="newHandleClose"
       >
         <el-container>
@@ -58,29 +60,31 @@
       <el-drawer
         title="编辑"
         :visible.sync="editDrawer"
-        :direction="editDirection"
+        :direction="direction"
         :before-close="editHandleClose"
       >
         <el-container>
           <el-main>
-            <el-form ref="form" label-width="80px">
+            <el-form ref="form" label-width="80px" :model="Rule">
               <el-form-item label="最高分">
-                <el-input placeholder="最高分" />
+                <el-input v-model="Rule.maxScore" placeholder="最高分" />
               </el-form-item>
               <el-form-item label="最低分">
-                <el-input placeholder="最低分" />
+                <el-input v-model="Rule.minScore" placeholder="最低分" />
               </el-form-item>
               <el-form-item label="是否唯一">
-                <el-select v-model="value" placeholder="是否唯一">
+                <el-select v-model="Rule.uniqueItem" placeholder="是否唯一">
                   <el-option value="1" label="唯一" />
                   <el-option value="0" label="可叠加" />
                 </el-select>
               </el-form-item>
               <el-form-item label="类型">
-                <el-select v-model="value" placeholder="类型">
-                  <el-option value="1" label="唯一" />
-                  <el-option value="0" label="可叠加" />
-                </el-select>
+                <el-cascader
+                  :options="options"
+                  :props="props"
+                  collapse-tags
+                  clearable>
+                </el-cascader>
               </el-form-item>
             </el-form>
           </el-main>
@@ -90,7 +94,7 @@
   </div>
 </template>
 <script>
-import { getAllCalculationRule } from '@/api/table'
+import { getAllCalculationRule, findCalculationRuleById, findAllLevels, findAllEvidence } from '@/api/table'
 export default {
   filters: {
     unique(uniqueItem) {
@@ -120,15 +124,32 @@ export default {
       listLoading: true,
       CalculationRule: [],
       newDrawer: false,
-      newDirection: 'rtl',
+      direction: 'rtl',
       editDrawer: false,
-      editDirection: 'rtl'
+      Rule: {
+        calculationRuleId: 0,
+        uniqueItem: 0,
+        maxScore: 0,
+        minScore: 0,
+        levels: [],
+        evidence: {}
+      },
+      levels: [],
+      evidence: [],
+      props: { multiple: true },
+      options: [{
+      }]
     }
   },
   created() {
     getAllCalculationRule().then(response => {
       this.CalculationRule = response.table
       this.listLoading = false
+    })
+    findAllLevels().then(response => {
+    })
+    findAllEvidence().then(response => {
+      this.evidence = response.table
     })
   },
   methods: {
@@ -145,6 +166,15 @@ export default {
           done()
         })
         .catch(_ => {})
+    },
+    getCalculationRuleById(id) {
+      this.editDrawer = true
+      findCalculationRuleById(id).then(response => {
+        console.log(response.data)
+        this.Rule.maxScore = response.data.maxScore
+        this.Rule.minScore = response.data.minScore
+        this.Rule.uniqueItem = response.data.uniqueItem
+      })
     }
   }
 }
