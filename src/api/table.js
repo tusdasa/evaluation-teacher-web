@@ -147,10 +147,26 @@ export function findCalculationRuleById(id) {
   })
 }
 
-export function createCalculationRule() {
+export function createCalculationRule(data) {
   return request({
     url: 'admin/rule/calculation',
-    method: 'post'
+    method: 'post',
+    data: data
+  })
+}
+
+export function updateCalculationRule(data) {
+  return request({
+    url: 'admin/rule/calculation',
+    method: 'put',
+    data: data
+  })
+}
+
+export function deleteCalculationRuleById(id) {
+  return request({
+    url: 'admin/rule/calculation/' + String(id),
+    method: 'delete'
   })
 }
 
@@ -175,10 +191,11 @@ export function findEvidenceById(id) {
   })
 }
 
-export function createEvidence() {
+export function createEvidence(data) {
   return request({
     url: 'admin/rule/evidence',
-    method: 'post'
+    method: 'post',
+    data: data
   })
 }
 

@@ -147,24 +147,24 @@ export const constantRoutes = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        meta: { title: 'Test' }
       },
       {
         path: 'menu3',
         component: () => import('@/views/nested/menu3/index'),
-        meta: { title: 'menu3' },
+        meta: { title: '用户管理' },
         children: [
           {
             path: 'menu1-2-1',
             component: () => import('@/views/nested/menu3/menu1-2-1'),
             name: 'Menu1-2-1',
-            meta: { title: 'Menu1-2-1' }
+            meta: { title: '学生管理' }
           },
           {
             path: 'menu1-2-2',
             component: () => import('@/views/nested/menu3/menu1-2-2'),
             name: 'Menu1-2-2',
-            meta: { title: 'Menu1-2-2' }
+            meta: { title: '教师管理' }
           }
         ]
       }
