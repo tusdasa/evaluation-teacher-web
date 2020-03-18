@@ -244,3 +244,81 @@ export function crateLevel(data) {
   })
 }
 
+export function findStudentById(id) {
+  return request({
+    url: 'admin/student/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateStudent(data) {
+  return request({
+    url: 'admin/student/',
+    method: 'put',
+    data: data
+  })
+}
+
+export function findAllDepartment() {
+  return request({
+    url: 'admin/data/department',
+    method: 'get'
+  })
+}
+
+export function findAllMajor() {
+  return request({
+    url: 'admin/data/major',
+    method: 'get'
+  })
+}
+
+export function findAllClass() {
+  return request({
+    url: 'admin/class/',
+    method: 'get'
+  })
+}
+
+export function findAllGrade() {
+  return request({
+    url: 'admin/grade/',
+    method: 'get'
+  })
+}
+
+export function findTeacherById(id) {
+  return request({
+    url: 'admin/teacher/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateTeacher(data) {
+  return request({
+    url: 'admin/teacher/',
+    method: 'put',
+    data: data
+  })
+}
+
+export function findAllRole() {
+  return request({
+    url: 'admin/data/role',
+    method: 'get'
+  })
+}
+
+export function findAllProfessional() {
+  return request({
+    url: 'admin/data/professional',
+    method: 'get'
+  })
+}
+
+export function findAllState() {
+  return request({
+    url: 'admin/data/state',
+    method: 'get'
+  })
+}
