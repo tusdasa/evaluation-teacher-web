@@ -24,21 +24,21 @@ export function sendEvaluationData(result) {
 
 export function getAllFirstKPI() {
   return request({
-    url: 'admin/first/',
+    url: 'admin/first',
     method: 'get'
   })
 }
 
 export function getAllSecondKPI() {
   return request({
-    url: 'admin/second/',
+    url: 'admin/second',
     method: 'get'
   })
 }
 
 export function getAllThirdKPI() {
   return request({
-    url: 'admin/third/',
+    url: 'admin/third',
     method: 'get'
   })
 }
@@ -59,7 +59,7 @@ export function getFirstKPIById(id) {
 
 export function updateFirstKPI(data) {
   return request({
-    url: 'admin/first/',
+    url: 'admin/first',
     method: 'put',
     data: data
   })
@@ -67,7 +67,7 @@ export function updateFirstKPI(data) {
 
 export function createFirstKPI(data) {
   return request({
-    url: 'admin/first/',
+    url: 'admin/first',
     method: 'post',
     data: data
   })
@@ -89,7 +89,7 @@ export function findSecondKPIById(id) {
 
 export function updateSecondKPI(data) {
   return request({
-    url: 'admin/second/',
+    url: 'admin/second',
     method: 'put',
     data: data
   })
@@ -97,7 +97,7 @@ export function updateSecondKPI(data) {
 
 export function createSecondKPI(data) {
   return request({
-    url: 'admin/second/',
+    url: 'admin/second',
     method: 'post',
     data: data
   })
@@ -119,7 +119,7 @@ export function findThirdKPIById(id) {
 
 export function updateThirdKPI(data) {
   return request({
-    url: 'admin/third/',
+    url: 'admin/third',
     method: 'put',
     data: data
   })
@@ -127,7 +127,7 @@ export function updateThirdKPI(data) {
 
 export function createThirdKPI(data) {
   return request({
-    url: 'admin/third/',
+    url: 'admin/third',
     method: 'post',
     data: data
   })
@@ -253,7 +253,7 @@ export function findStudentById(id) {
 
 export function updateStudent(data) {
   return request({
-    url: 'admin/student/',
+    url: 'admin/student',
     method: 'put',
     data: data
   })
@@ -282,7 +282,7 @@ export function findAllClass() {
 
 export function findAllGrade() {
   return request({
-    url: 'admin/grade/',
+    url: 'admin/grade',
     method: 'get'
   })
 }
@@ -296,7 +296,7 @@ export function findTeacherById(id) {
 
 export function updateTeacher(data) {
   return request({
-    url: 'admin/teacher/',
+    url: 'admin/teacher',
     method: 'put',
     data: data
   })
@@ -319,6 +319,34 @@ export function findAllProfessional() {
 export function findAllState() {
   return request({
     url: 'admin/data/state',
+    method: 'get'
+  })
+}
+
+export function findAllRight() {
+  return request({
+    url: 'admin/right',
+    method: 'get'
+  })
+}
+
+export function findRightById(id) {
+  return request({
+    url: 'admin/right/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateRight(data) {
+  return request({
+    url: 'admin/right',
+    method: 'put'
+  })
+}
+
+export function getResult() {
+  return request({
+    url: 'admin/result',
     method: 'get'
   })
 }

@@ -1,85 +1,62 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px">
-      <el-form-item label="Activity name">
-        <el-input v-model="form.name" />
-      </el-form-item>
-      <el-form-item label="Activity zone">
-        <el-select v-model="form.region" placeholder="please select your zone">
-          <el-option label="Zone one" value="shanghai" />
-          <el-option label="Zone two" value="beijing" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker v-model="form.date1" type="date" placeholder="Pick a date" style="width: 100%;" />
-        </el-col>
-        <el-col :span="2" class="line">-</el-col>
-        <el-col :span="11">
-          <el-time-picker v-model="form.date2" type="fixed-time" placeholder="Pick a time" style="width: 100%;" />
-        </el-col>
-      </el-form-item>
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery" />
-      </el-form-item>
-      <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="Online activities" name="type" />
-          <el-checkbox label="Promotion activities" name="type" />
-          <el-checkbox label="Offline activities" name="type" />
-          <el-checkbox label="Simple brand exposure" name="type" />
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor" />
-          <el-radio label="Venue" />
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="Activity form">
-        <el-input v-model="form.desc" type="textarea" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
-      </el-form-item>
-    </el-form>
+    <div>
+      <div>
+        <el-card class="box-card" style="width:40%;margin-top:20px;">
+          <el-divider content-position="left">工号</el-divider>
+          <span>{{ result.id }}</span>
+          <el-divider />
+          <span>{{ result.teacherName }}</span>
+          <el-divider />
+          <span>{{ result.academicYearName }}</span>
+          <el-divider />
+          <span>{{ result.departmentName }}</span>
+          <el-divider />
+          <span>{{ result.professionalTitle }}</span>
+          <el-divider content-position="left">学生评价平均分</el-divider>
+          <span>{{ result.studentResult }}</span>
+          <el-divider content-position="left">学生评价标准差</el-divider>
+          <span>{{ result.studentStandardDeviation }}</span>
+          <el-divider content-position="left">学生评价众数</el-divider>
+          <span>{{ result.studentMode }}</span>
+          <el-divider content-position="left">教学督导评价</el-divider>
+          <span>{{ result.teacherResult }}</span>
+          <el-divider content-position="right">总分</el-divider>
+          <span>{{ result.total }}</span>
+        </el-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+// import { mapGetters } from 'vuex'
+import { getResult } from '@/api/table'
 export default {
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+      result: {
+        id: 0,
+        teacherName: '未获取到',
+        academicYearName: '未获取到',
+        departmentName: '未获取到',
+        professionalTitle: '未获取到',
+        studentResult: 0,
+        studentStandardDeviation: 0,
+        studentMode: 0,
+        teacherResult: 0,
+        total: 0
       }
     }
   },
+  created() {
+    getResult().then(response => {
+      if (response.code === 200) {
+        this.result = response.data
+      }
+    })
+  },
   methods: {
-    onSubmit() {
-      this.$message('submit!')
-    },
-    onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
-      })
-    }
   }
 }
 </script>
-
-<style scoped>
-.line{
-  text-align: center;
-}
-</style>
-

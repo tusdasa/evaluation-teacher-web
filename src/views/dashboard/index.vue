@@ -12,6 +12,9 @@
               <div vclass="text item"><strong>{{ id }}</strong></div>
               <div vclass="text item">当前角色: <strong>{{ role | roleFilter }}</strong></div>
             </el-card>
+            <el-card class="box-card" style="margin-top:40px;">
+              <div vclass="text item"><strong>{{ role | describeFilter }}</strong></div>
+            </el-card>
           </div>
         </div>
       </el-col>
@@ -35,7 +38,7 @@ export default {
         student: '学生',
         teacher: '教师',
         supervisor: '教学督导',
-        main: '负责人',
+        main: '管理员',
         other: '其他'
       }
       return roleMap[role]
@@ -50,6 +53,15 @@ export default {
       if (name > 4) {
         return name
       }
+    },
+    describeFilter(role) {
+      const roleMap = {
+        teacher: '您能查看您的成绩',
+        supervisor: '您能参与教师评价',
+        main: '您可以访问管理界面',
+        other: '其他'
+      }
+      return roleMap[role]
     }
   },
   data() {

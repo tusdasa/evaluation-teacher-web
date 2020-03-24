@@ -1,20 +1,23 @@
 <template>
   <div class="app-container">
-    <h1>开发中</h1>
+    <el-header>
+      <h1>成绩汇总</h1>
+    </el-header>
+    <el-main>
+      1
+    </el-main>
   </div>
 </template>
 
 <script>
 export default {
-
   data() {
     return {
     }
   },
-  watch: {
+  created() {
   },
   methods: {
   }
 }
 </script>
-

@@ -72,7 +72,7 @@ export const constantRoutes = [
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: '树', icon: 'tree' }
+        meta: { title: '说明', icon: 'tree' }
       }
     ]
   },
@@ -85,7 +85,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: '表单', icon: 'form' }
+        meta: { title: '成绩', icon: 'form' }
       }
     ]
   },
@@ -147,7 +147,7 @@ export const constantRoutes = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'Test' }
+        meta: { title: '权限管理' }
       },
       {
         path: 'menu3',
@@ -167,6 +167,16 @@ export const constantRoutes = [
             meta: { title: '教师管理' }
           }
         ]
+      },
+      {
+        path: 'menu4',
+        component: () => import('@/views/nested/menu4/index'),
+        meta: { title: '成绩汇总' }
+      },
+      {
+        path: 'menu5',
+        component: () => import('@/views/nested/menu4/index'),
+        meta: { title: '数据统计' }
       }
     ]
   },
