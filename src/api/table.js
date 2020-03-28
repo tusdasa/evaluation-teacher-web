@@ -350,3 +350,19 @@ export function getResult() {
     method: 'get'
   })
 }
+
+export function getDepartmentTeacher(page, size) {
+  return request({
+    url: 'admin/teacher/department?size=' + String(size) + '&page=' + String(page),
+    method: 'get'
+  })
+}
+
+export function getDepartmentTeacherResult(data) {
+  return request({
+    url: 'admin/calculate/ids',
+    method: 'post',
+    data: data
+  })
+}
+

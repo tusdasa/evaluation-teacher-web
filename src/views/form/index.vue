@@ -2,7 +2,7 @@
   <div class="app-container">
     <div>
       <div>
-        <el-card class="box-card" style="width:40%;margin-top:20px;">
+        <el-card class="box-card" style="width:60%;margin-top:20px;margin:auto;">
           <el-divider content-position="left">工号</el-divider>
           <span>{{ result.id }}</span>
           <el-divider />
@@ -13,15 +13,45 @@
           <span>{{ result.departmentName }}</span>
           <el-divider />
           <span>{{ result.professionalTitle }}</span>
-          <el-divider content-position="left">学生评价平均分</el-divider>
-          <span>{{ result.studentResult }}</span>
-          <el-divider content-position="left">学生评价标准差</el-divider>
-          <span>{{ result.studentStandardDeviation }}</span>
-          <el-divider content-position="left">学生评价众数</el-divider>
-          <span>{{ result.studentMode }}</span>
-          <el-divider content-position="left">教学督导评价</el-divider>
-          <span>{{ result.teacherResult }}</span>
-          <el-divider content-position="right">总分</el-divider>
+          <el-card class="box-card" style="margin-top:20px;">
+            <span>{{ result.firstTerm.termName }}</span>
+            <el-divider content-position="left">学生评价平均分</el-divider>
+            <span>{{ result.firstTerm.studentResult }}</span>
+            <el-divider content-position="left">学生评价标准差</el-divider>
+            <span>{{ result.firstTerm.studentStandardDeviation }}</span>
+            <el-divider content-position="left">学生评价众数</el-divider>
+            <span>{{ result.firstTerm.studentModeMax }}</span>
+            <span>,</span>
+            <span>{{ result.firstTerm.studentModeMin }}</span>
+            <el-divider content-position="left">参与评价班级数量</el-divider>
+            <span>{{ result.firstTerm.classCount }}</span>
+            <el-divider content-position="left">参与评价的学生数量</el-divider>
+            <span>{{ result.firstTerm.studentCount }}</span>
+            <el-divider content-position="left">教学督导评价</el-divider>
+            <span>{{ result.firstTerm.teacherResult }}</span>
+            <el-divider content-position="left">总分</el-divider>
+            <span>{{ result.firstTerm.total }}</span>
+          </el-card>
+          <el-card class="box-card" style="margin-top:20px;">
+            <span>{{ result.secondTerm.termName }}</span>
+            <el-divider content-position="left">学生评价平均分</el-divider>
+            <span>{{ result.secondTerm.studentResult }}</span>
+            <el-divider content-position="left">学生评价标准差</el-divider>
+            <span>{{ result.secondTerm.studentStandardDeviation }}</span>
+            <el-divider content-position="left">学生评价众数</el-divider>
+            <span>{{ result.secondTerm.studentModeMax }}</span>
+            <span>,</span>
+            <span>{{ result.secondTerm.studentModeMin }}</span>
+            <el-divider content-position="left">参与评价班级数量</el-divider>
+            <span>{{ result.secondTerm.classCount }}</span>
+            <el-divider content-position="left">参与评价的学生数量</el-divider>
+            <span>{{ result.secondTerm.studentCount }}</span>
+            <el-divider content-position="left">教学督导评价</el-divider>
+            <span>{{ result.secondTerm.teacherResult }}</span>
+            <el-divider content-position="left">总分</el-divider>
+            <span>{{ result.secondTerm.total }}</span>
+          </el-card>
+          <el-divider content-position="left">总分</el-divider>
           <span>{{ result.total }}</span>
         </el-card>
       </div>
@@ -41,11 +71,33 @@ export default {
         academicYearName: '未获取到',
         departmentName: '未获取到',
         professionalTitle: '未获取到',
-        studentResult: 0,
-        studentStandardDeviation: 0,
-        studentMode: 0,
-        teacherResult: 0,
-        total: 0
+        studentScore: 0,
+        teacherScore: 0,
+        total: 0,
+        firstTerm: {
+          termId: 0,
+          termName: '',
+          studentResult: 0,
+          studentModeMax: 0,
+          studentModeMin: 0,
+          studentStandardDeviation: 0,
+          studentCount: 0,
+          classCount: 0,
+          teacherResult: 0,
+          total: 0
+        },
+        secondTerm: {
+          termId: 0,
+          termName: '',
+          studentResult: 0,
+          studentModeMax: 0,
+          studentModeMin: 0,
+          studentStandardDeviation: 0,
+          studentCount: 0,
+          classCount: 0,
+          teacherResult: 0,
+          total: 0
+        }
       }
     }
   },

@@ -42,6 +42,11 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
+  {
+    path: '/rest',
+    component: () => import('@/views/password'),
+    hidden: true
+  },
 
   {
     path: '/',
@@ -175,8 +180,13 @@ export const constantRoutes = [
       },
       {
         path: 'menu5',
-        component: () => import('@/views/nested/menu4/index'),
+        component: () => import('@/views/nested/menu5/index'),
         meta: { title: '数据统计' }
+      },
+      {
+        path: 'menu6',
+        component: () => import('@/views/nested/menu6/index'),
+        meta: { title: '使用说明' }
       }
     ]
   },

@@ -79,10 +79,16 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000
       })
-      res.table = []
-      res.data = {}
-      res.code = 500
-      return res
+      return
+    }
+
+    if (res.code === 408) {
+      Message({
+        message: res.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+      return
     }
   },
   error => {

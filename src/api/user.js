@@ -31,3 +31,15 @@ export function logout(token) {
     headers: { 'Authorization': token }
   })
 }
+
+export function restPassword(data) {
+  const param = new URLSearchParams()
+  param.append('new', data.newPassword)
+  param.append('old', data.oldPassword)
+  return request({
+    url: 'auth/rest/teacher',
+    method: 'put',
+    data: param,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  })
+}
