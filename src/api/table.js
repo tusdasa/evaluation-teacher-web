@@ -366,3 +366,31 @@ export function getDepartmentTeacherResult(data) {
   })
 }
 
+export function getCountStudent() {
+  return request({
+    url: 'admin/evaluation/scount',
+    method: 'get'
+  })
+}
+
+export function getCountTeacher() {
+  return request({
+    url: 'admin/evaluation/tcount',
+    method: 'get'
+  })
+}
+
+export function getDeleteAllStudent() {
+  return request({
+    url: 'admin/evaluation/student',
+    method: 'delete'
+  })
+}
+
+export function getDeleteAllTeacher() {
+  return request({
+    url: 'admin/evaluation/teacher',
+    method: 'delete'
+  })
+}
+
