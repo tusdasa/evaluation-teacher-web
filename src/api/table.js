@@ -340,7 +340,8 @@ export function findRightById(id) {
 export function updateRight(data) {
   return request({
     url: 'admin/right',
-    method: 'put'
+    method: 'put',
+    data: data
   })
 }
 
@@ -394,3 +395,69 @@ export function getDeleteAllTeacher() {
   })
 }
 
+export function findAllAllAcademic() {
+  return request({
+    url: 'admin/academicyear',
+    method: 'get'
+  })
+}
+
+export function findAllAcademicById(id) {
+  return request({
+    url: 'admin/academicyear/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateAcademicById(data) {
+  return request({
+    url: 'admin/academicyear',
+    method: 'get',
+    data: data
+  })
+}
+
+export function createAcademic(data) {
+  return request({
+    url: 'admin/academicyear',
+    method: 'post',
+    data: data
+  })
+}
+
+export function currentAcademic() {
+  return request({
+    url: 'admin/academicyear/current',
+    method: 'get'
+  })
+}
+
+export function findAllTerm() {
+  return request({
+    url: 'admin/term',
+    method: 'get'
+  })
+}
+
+export function findAllTermById(id) {
+  return request({
+    url: 'admin/term/' + String(id),
+    method: 'get'
+  })
+}
+
+export function updateTermById(data) {
+  return request({
+    url: 'admin/term',
+    method: 'put',
+    data: data
+  })
+}
+
+export function createTerm(data) {
+  return request({
+    url: 'admin/term',
+    method: 'post',
+    data: data
+  })
+}

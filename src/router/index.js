@@ -186,7 +186,12 @@ export const constantRoutes = [
       {
         path: 'menu6',
         component: () => import('@/views/nested/menu6/index'),
-        meta: { title: '使用说明' }
+        meta: { title: '学期管理' }
+      },
+      {
+        path: 'menu7',
+        component: () => import('@/views/nested/menu7/index'),
+        meta: { title: '学年管理' }
       }
     ]
   },

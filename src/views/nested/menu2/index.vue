@@ -55,11 +55,9 @@
           <el-main>
             <el-form ref="form" label-width="80px">
               <el-form-item label="编辑">
-                <el-cascader
-                  :options="options"
-                  :props="props"
-                  clearable
-                />
+                <el-input v-model="r1" placeholder="r1"></el-input>
+                <el-input v-model="r2" placeholder="r2"></el-input>
+                <el-input v-model="r3" placeholder="r3"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="update">更新</el-button>
@@ -74,7 +72,7 @@
 </template>
 
 <script>
-import { findAllRight, findRightById /*, updateRight */ } from '@/api/table'
+import { findAllRight, findRightById , updateRight } from '@/api/table'
 export default {
   filters: {
     kpiFilter(KpiId) {
@@ -101,22 +99,9 @@ export default {
       listLoading: false,
       rights: [],
       right: [],
-      props: { multiple: true },
-      options: [
-        {
-          value: 1,
-          label: '东南',
-          children: [{
-            value: 2,
-            label: '上海',
-            children: [
-              { value: 3, label: '普陀' },
-              { value: 4, label: '黄埔' },
-              { value: 5, label: '徐汇' }
-            ]
-          }]
-        }
-      ]
+      r1: '',
+      r2: '',
+      r3: ''
     }
   },
   created() {
@@ -134,10 +119,32 @@ export default {
     },
     findById(id) {
       this.editDrawer = true
-      findRightById(id)
+      findRightById(id).then(response => {
+        this.right = response.data
+        this.right.firstKpiId.forEach(element => {
+        this.r1 = this.r1 + String(element) + ':'
+      })
+      this.right.secondKpiId.forEach(element => {
+        this.r2 = this.r2 + String(element) + ':'
+      })
+      this.right.thirdKpiId.forEach(element => {
+        this.r3 = this.r3 + String(element) + ':'
+      })
+      })
     },
     update() {
-      console.log(this.right)
+      let rr1 = this.r1.split(':')
+      let rr2 = this.r2.split(':')
+      let rr3 = this.r3.split(':')
+      rr1.pop(rr1[rr1.length-1])
+      rr2.pop(rr2[rr2.length-1])
+      rr3.pop(rr3[rr3.length-1])
+      this.right.firstKpiId = rr1
+      this.right.secondKpiId = rr2
+      this.right.thirdKpiId = rr3
+      updateRight(this.right).then(response => {
+        location.reload(true)
+      })
     }
   }
 }
