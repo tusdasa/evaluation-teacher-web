@@ -7,7 +7,7 @@ import { getToken } from '@/utils/auth'
 const service = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // baseURL: 'http://localhost:8080/service/',
-  baseURL: 'https://api.tusdasa.net/api/',
+  baseURL: 'http://api.tusdasa.net/api/',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 50000 // request timeout
 })
